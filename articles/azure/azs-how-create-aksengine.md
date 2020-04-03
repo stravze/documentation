@@ -84,7 +84,16 @@ Ask your Azure Stack Hub operator if the following prerequisites below have been
 
 ## Deploying the Kubernetes cluster using AKS engine
 
-UKCloud has created a script ([DeployAzSHKubernetes.ps1](linkhere)) and module ([AKSEngine.psm1](linkhere)) to automate the deployment process of the Kubernetes cluster on Azure Stack Hub.
+UKCloud has created a script ([DeployAzSHKubernetes.ps1](linkhere)) and module ([AKSEngine.psm1](linkhere)) to automate the deployment process of a Kubernetes cluster on Azure Stack Hub.
+
+The [DeployAzSHKubernetes.ps1](linkhere) creates the following resources:
+
+1. The AKS engine client VM (either Linux or Windows), which is used to deploy the Kubernetes cluster on Azure Stack Hub
+
+2. A Kubernetes cluster deployed at the latest version supported on Azure Stack Hub (Kubernetes version: 1.15.5)
+
+> [!NOTE]
+> The [DeployAzSHKubernetes.ps1](linkhere) script will also provide you with access to the Kubernetes cluster dashboard.
 
 ## [Linux](#tab/tabid-1)
 
