@@ -68,11 +68,11 @@ Ask your Azure Stack Hub operator if the following prerequisites below have been
 * A Service principal name (SPN) with **contributor** role assigned to it.
 
     > [!NOTE]
-    > This is used to deploy the Kubernetes cluster on Azure Stack Hub.
+    > This is used by AKS engine to deploy the Kubernetes cluster on Azure Stack Hub.
 
 * Have appropriate access to a subscription in Azure Stack Hub.
 
-* Ability to generate Public and Private SSH key pairs using:
+* Ability to generate public and private SSH key pairs using:
 
     - OpenSSH
 
@@ -95,7 +95,7 @@ Enter details below to provide values for the variables in the following command
 | Variable name   | Variable description                                               | Input            |
 |-----------------|--------------------------------------------------------------------|------------------|
 | \$ArmEndpoint    | The Azure Resource Manager endpoint for Azure Stack Hub.                 | <form oninput="result.value=armendpoint.value" id="armendpoint" style="display: inline;"><input type="text" id="armendpoint" name="armendpoint" style="display: inline;" placeholder="https://management.frn00006.azure.ukcloud.com"/></form> |
-| \$AzureStackUsername        | The username used to login to the tenant domain to create a new SPN.                           | <form oninput="result.value=azurestackusername.value" id="azurestackusername" style="display: inline;"><input type="text" id="azurestackusername" name="azurestackusername" style="display: inline;" placeholder="admin"/></form> |
+| \$AzureStackUsername        | The username used to login to the tenant domain to create a new SPN.                           | <form oninput="result.value=azurestackusername.value" id="azurestackusername" style="display: inline;"><input type="text" id="azurestackusername" name="azurestackusername" style="display: inline;" placeholder="admin@contoso.onmicrosoft.com"/></form> |
 | \$AzureStackUserPassword        | The password used to login to the tenant domain to create a new SPN.                          | <form oninput="result.value=azurestackuserpassword.value" id="azurestackuserpassword" style="display: inline;"><input type="text" id="azurestackuserpassword" name="azurestackuserpassword" style="display: inline;" placeholder="Password123!"/></form> |
 | \$TenantDomain    | The tenant domain to login to.                                 | <form oninput="result.value=tenantdomain.value" id="tenantdomain" style="display: inline;"><input type="text" id="tenantdomain" name="tenantdomain" style="display: inline;" placeholder="contoso.onmicrosoft.com"/></form> |
 | \$TenantPortalUrl   | The URL of the Azure Stack Hub tenant portal.          | <form oninput="result.value=tenantportalurl.value" id="tenantportalurl" style="display: inline;"><input type="text" id="tenantportalurl" name="tenantportalurl" style="display: inline;" placeholder="https://portal.frn00006.azure.ukcloud.com"/></form> |
@@ -111,7 +111,7 @@ Enter details below to provide values for the variables in the following command
 2. Execute the deployment script using the following command:
 
     <pre><code class="language-PowerShell">
-    .\DeployAzSHKubernetes.ps1 -AzureStackUsername "<output form="azurestackusername" name="result" style="display: inline;">admin</output>" -AzureStackUserPassword "<output form="azurestackuserpassword" name="result" style="display: inline;">Password123!</output>" -TenantDomain "<output form="tenantdomain" name="result" style="display: inline;">contoso.onmicrosoft.com</output>" -ArmEndpoint "<output form="armendpoint" name="result" style="display: inline;">https://management.frn00006.azure.ukcloud.com</output>" -TenantPortalUrl "<output form="tenantportalurl" name="result" style="display: inline;">https://portal.frn00006.azure.ukcloud.com</output>" -MasterNodeCount <output form="masternodecount" name="result" style="display: inline;">4</output> -WorkerNodeCount <output form="workernodecount" name="result" style="display: inline;">4</output> -Verbose
+    .\DeployAzSHKubernetes.ps1 -AzureStackUsername "<output form="azurestackusername" name="result" style="display: inline;">admin@contoso.onmicrosoft.com</output>" -AzureStackUserPassword "<output form="azurestackuserpassword" name="result" style="display: inline;">Password123!</output>" -TenantDomain "<output form="tenantdomain" name="result" style="display: inline;">contoso.onmicrosoft.com</output>" -ArmEndpoint "<output form="armendpoint" name="result" style="display: inline;">https://management.frn00006.azure.ukcloud.com</output>" -TenantPortalUrl "<output form="tenantportalurl" name="result" style="display: inline;">https://portal.frn00006.azure.ukcloud.com</output>" -MasterNodeCount <output form="masternodecount" name="result" style="display: inline;">4</output> -WorkerNodeCount <output form="workernodecount" name="result" style="display: inline;">4</output> -Verbose
     </code></pre>
 
 ## [Windows](#tab/tabid-2)
@@ -123,7 +123,7 @@ Enter details below to provide values for the variables in the following command
 | Variable name   | Variable description                                               | Input            |
 |-----------------|--------------------------------------------------------------------|------------------|
 | \$ArmEndpoint    | The Azure Resource Manager endpoint for Azure Stack Hub.                 | <form oninput="result.value=armendpoint1.value" id="armendpoint1" style="display: inline;"><input type="text" id="armendpoint1" name="armendpoint1" style="display: inline;" placeholder="https://management.frn00006.azure.ukcloud.com"/></form> |
-| \$AzureStackUsername        | The username used to login to the tenant domain to create a new SPN.                           | <form oninput="result.value=azurestackusername1.value" id="azurestackusername1" style="display: inline;"><input type="text" id="azurestackusername1" name="azurestackusername1" style="display: inline;" placeholder="admin"/></form> |
+| \$AzureStackUsername        | The username used to login to the tenant domain to create a new SPN.                           | <form oninput="result.value=azurestackusername1.value" id="azurestackusername1" style="display: inline;"><input type="text" id="azurestackusername1" name="azurestackusername1" style="display: inline;" placeholder="admin@contoso.onmicrosoft.com"/></form> |
 | \$AzureStackUserPassword        | The password used to login to the tenant domain to create a new SPN.                          | <form oninput="result.value=azurestackuserpassword1.value" id="azurestackuserpassword1" style="display: inline;"><input type="text" id="azurestackuserpassword1" name="azurestackuserpassword1" style="display: inline;" placeholder="Password123!"/></form> |
 | \$TenantDomain    | The tenant domain to login to.                                 | <form oninput="result.value=tenantdomain1.value" id="tenantdomain1" style="display: inline;"><input type="text" id="tenantdomain1" name="tenantdomain1" style="display: inline;" placeholder="contoso.onmicrosoft.com"/></form> |
 | \$TenantPortalUrl   | The URL of the Azure Stack Hub tenant portal.          | <form oninput="result.value=tenantportalurl1.value" id="tenantportalurl1" style="display: inline;"><input type="text" id="tenantportalurl1" name="tenantportalurl1" style="display: inline;" placeholder="https://portal.frn00006.azure.ukcloud.com"/></form> |
@@ -140,7 +140,7 @@ Enter details below to provide values for the variables in the following command
 2. Execute the deployment script using the following command:
 
     <pre><code class="language-PowerShell">
-    .\DeployAzSHKubernetes.ps1 -AzureStackUsername "<output form="azurestackusername1" name="result" style="display: inline;">admin</output>" -AzureStackUserPassword "<output form="azurestackuserpassword1" name="result" style="display: inline;">Password123!</output>" -TenantDomain "<output form="tenantdomain1" name="result" style="display: inline;">contoso.onmicrosoft.com</output>" -ArmEndpoint "<output form="armendpoint1" name="result" style="display: inline;">https://management.frn00006.azure.ukcloud.com</output>" -TenantPortalUrl "<output form="tenantportalurl1" name="result" style="display: inline;">https://portal.frn00006.azure.ukcloud.com</output>" -Windows -WindowsVMPassword "<output form="windowsvmpassword" name="result" style="display: inline;">Password123!</output>" -MasterNodeCount <output form="masternodecount1" name="result" style="display: inline;">4</output> -WorkerNodeCount <output form="workernodecount1" name="result" style="display: inline;">4</output> -Verbose
+    .\DeployAzSHKubernetes.ps1 -AzureStackUsername "<output form="azurestackusername1" name="result" style="display: inline;">admin@contoso.onmicrosoft.com</output>" -AzureStackUserPassword "<output form="azurestackuserpassword1" name="result" style="display: inline;">Password123!</output>" -TenantDomain "<output form="tenantdomain1" name="result" style="display: inline;">contoso.onmicrosoft.com</output>" -ArmEndpoint "<output form="armendpoint1" name="result" style="display: inline;">https://management.frn00006.azure.ukcloud.com</output>" -TenantPortalUrl "<output form="tenantportalurl1" name="result" style="display: inline;">https://portal.frn00006.azure.ukcloud.com</output>" -Windows -WindowsVMPassword "<output form="windowsvmpassword" name="result" style="display: inline;">Password123!</output>" -MasterNodeCount <output form="masternodecount1" name="result" style="display: inline;">4</output> -WorkerNodeCount <output form="workernodecount1" name="result" style="display: inline;">4</output> -Verbose
     </code></pre>
 
 ***
