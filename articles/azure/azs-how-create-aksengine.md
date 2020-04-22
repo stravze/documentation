@@ -90,7 +90,7 @@ The [DeployAzSHKubernetes.ps1](linkhere) creates the following high level resour
 
 1. The AKS engine client VM (either Linux or Windows), which is used to deploy the Kubernetes cluster on Azure Stack Hub
 
-2. A Kubernetes cluster deployed at the latest version supported on Azure Stack Hub (Kubernetes version: 1.15.5)
+2. A Kubernetes cluster deployed at the [latest version supported on Azure Stack Hub](https://github.com/Azure/aks-engine/blob/master/docs/topics/azure-stack.md#supported-aks-engine-versions) (Kubernetes version: 1.15.5)
 
 ### AKS engine client VM
 
@@ -108,6 +108,12 @@ For Linux, **SSH server** is used to interact with the client VM and run automat
 >     * We made sure that each ssh-agent configuration used `ForwardAgent yes` and the SSH server configuration with `AllowAgentForwarding yes` set.
 >     * We tested with PowerShell 5 and 7.
 >     * We experienced that with an active RDP session, everything began working as expected.
+
+
+**TODO: Add Warning about Group policy alterations. Deploying Windows VM winRM trusted hosts**
+
+**TODO: Add about ports opened. Trusted hosts added etc for windows.
+Add usage about ssh forwarding. very useful. Add to section. once cluster is deployed.**
 
 ### Enabling cluster monitoring
 
