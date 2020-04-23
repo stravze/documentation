@@ -310,4 +310,14 @@ Enter details below to provide values for the variables in the following command
 
 ## Post Deployment
 
-Add usage about ssh forwarding. very useful. Add to section. once cluster is deployed.**
+### Using SSH agent forwarding
+
+A useful feature provided by SSH agent is agent forwarding. This allows you to forward your local SSH keys along the connection. This is useful as it means you only have to store the SSH private key on the client VM. SSH agent forwarding is utilised by using the `-A` parameter.
+
+1. SSH or RDP to the client VM.
+
+2. Add the **linuxprofile_rsa** SSH private key to the SSH agent using the following command: `ssh-add ~/.ssh/linuxprofile_rsa`
+
+3. SSH to the Kubernetes master node using the following command: `ssh -A azureuser@masternodeip`
+
+4. SSH from the Kubernetes master node to a worker node using the following command: `ssh -A azureuser@workernodeip`
