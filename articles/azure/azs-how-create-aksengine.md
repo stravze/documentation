@@ -39,6 +39,9 @@ This article is based on Microsoft's deploy documentation for Kubernetes on [Azu
 
 * [Deploy a Kubernetes cluster with the AKS engine on Azure Stack Hub](https://docs.microsoft.com/en-us/azure-stack/user/azure-stack-kubernetes-aks-engine-deploy-cluster?view=azs-1910)
 
+> [!CAUTION]
+> Before proceeding, ensure you are aware of the [issues and limitations](https://github.com/Azure/aks-engine/blob/master/docs/topics/azure-stack.md#known-issues-and-limitations) of Kubernetes on Azure Stack Hub.
+
 ### Intended audience
 
 To complete the steps in this guide, you must have appropriate access to a subscription in Azure Stack Hub.
@@ -99,6 +102,20 @@ The AKS engine client VM can be deployed as either Linux (Ubuntu 16.04 LTS) or W
 The client VM comes with **Kubectl** configured out of the box ready for you to interact with the Kubernetes cluster. Additionally, **ssh-agent** is also configured.
 
 For Linux, **SSH server** is used to interact with the client VM and run automation tasks against it. Whereas, for Windows; **WinRM** is used.
+For additional security, the following Network Security Group (NSG) rules are configured:
+
+* Linux client VM: **SSH** access (port 22) is only permitted from the `$AllowedIPs` variable or defaults to the returned value of `(Invoke-RestMethod -UseBasicParsing -Uri "ifconfig.me" -Method "Get")`
+
+* Windows client VM: **WinRM** access (ports 5985 and 5986) is only permitted from the `$AllowedIPs` variable or defaults to the returned value of `(Invoke-RestMethod -UseBasicParsing -Uri "ifconfig.me" -Method "Get")`
+
+    > [!IMPORTANT]
+    > For **WinRM** to connect successfully, **TrustedHosts** is configured on the local machine (with the Windows client VM's IP added) and on the Windows client VM (with the value(s) from `$AllowedIPs`).
+    >
+    > For **WinRM** to be configured successfully, you **must** have appropriate permissions to edit **TrustedHosts** on your local machine. If you are using **Group Policy**; this may not work.
+    >
+    > For more information, see [WinRM configuration and remote management](https://docs.microsoft.com/en-us/windows/win32/winrm/installation-and-configuration-for-windows-remote-management).
+
+* Kubernetes cluster: **SSH** access (port 22) is only permitted from the `$AllowedIPs` variable or defaults to the returned value of `(Invoke-RestMethod -UseBasicParsing -Uri "ifconfig.me" -Method "Get")`. Furthermore, the AKS engine client VM's IP is also permitted.
 
 > [!NOTE]
 > For the Windows client VM deployment, we spent a lot of time troubleshooting issues with OpenSSH server.
@@ -108,12 +125,6 @@ For Linux, **SSH server** is used to interact with the client VM and run automat
 >     * We made sure that each ssh-agent configuration used `ForwardAgent yes` and the SSH server configuration with `AllowAgentForwarding yes` set.
 >     * We tested with PowerShell 5 and 7.
 >     * We experienced that with an active RDP session, everything began working as expected.
-
-
-**TODO: Add Warning about Group policy alterations. Deploying Windows VM winRM trusted hosts**
-
-**TODO: Add about ports opened. Trusted hosts added etc for windows.
-Add usage about ssh forwarding. very useful. Add to section. once cluster is deployed.**
 
 ### Enabling cluster monitoring
 
@@ -296,3 +307,7 @@ Enter details below to provide values for the variables in the following command
     </code></pre>
 
 ***
+
+## Post Deployment
+
+Add usage about ssh forwarding. very useful. Add to section. once cluster is deployed.**
