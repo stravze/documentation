@@ -150,11 +150,13 @@ Both methods require the prerequisite of using an [Azure Resource Manager (ARM) 
     |-----------------|--------------------------------------------------------------------|------------------|
     | \$LogAnalyticsWorkspaceName    | The name of the Log Analytics Workspace in public Azure.                 | <form oninput="result.value=loganalyticsworkspacename.value" id="loganalyticsworkspacename" style="display: inline;"><input type="text" id="loganalyticsworkspacename" name="loganalyticsworkspacename" style="display: inline;" placeholder="kubernetes-cluster-workspace"/></form> |
     | \$LogAnalyticsWorkspaceResourceGroupName    | The name of the resource group containing the Log Analytics Workspace in public Azure.                 | <form oninput="result.value=loganalyticsworkspaceresourcegroupname.value" id="loganalyticsworkspaceresourcegroupname" style="display: inline;"><input type="text" id="loganalyticsworkspaceresourcegroupname" name="loganalyticsworkspaceresourcegroupname" style="display: inline;" placeholder="kubernetes-cluster-workspace-rg"/></form> |
+    | \$LogAnalyticsWorkspaceLocation    | The location of the Log Analytics Workspace.                 | <form oninput="result.value=loganalyticsworkspacelocation.value" id="loganalyticsworkspacelocation" style="display: inline;"><input type="text" id="loganalyticsworkspacelocation" name="loganalyticsworkspacelocation" style="display: inline;" placeholder="UK South"/></form> |
     | \$DownloadDirectoryPath    | The local path used to download the ARM template files to                  | <form oninput="result.value=downloaddirectorypath.value" id="downloaddirectorypath" style="display: inline;"><input type="text" id="downloaddirectorypath" name="downloaddirectorypath" style="display: inline;" placeholder="C:\Temp\EnableMonitoring"/></form> |
 
     <pre><code class="language-PowerShell"># Declare variables
     $LogAnalyticsWorkspaceName = "<output form="loganalyticsworkspacename" name="result" style="display: inline;">kubernetes-cluster-workspace</output>"
     $LogAnalyticsWorkspaceResourceGroupName = "<output form="loganalyticsworkspaceresourcegroupname" name="result" style="display: inline;">kubernetes-cluster-workspace-rg</output>"
+    $LogAnalyticsWorkspaceLocation = "<output form="loganalyticsworkspacelocation" name="result" style="display: inline;">UK South</output>"
     $DownloadDirectoryPath = "<output form="downloaddirectorypath" name="result" style="display: inline;">C:\Temp\EnableMonitoring</output>"
     $MonitoringARMTemplateUri = "https://raw.githubusercontent.com/microsoft/OMS-docker/ci_feature_prod/docs/templates/azuremonitor-containerSolution.json"
     $MonitoringARMTemplateParamsUri = "https://raw.githubusercontent.com/microsoft/OMS-docker/ci_feature_prod/docs/templates/azuremonitor-containerSolutionParams.json"
@@ -162,8 +164,21 @@ Both methods require the prerequisite of using an [Azure Resource Manager (ARM) 
     # Connect to public Azure
     Connect-AzureRmAccount
 
-    # Get Log Analytics Workspace object
-    $LogAnalyticsWorkspace = Get-AzureRmOperationalInsightsWorkspace -ResourceGroupName $LogAnalyticsWorkspaceResourceGroupName -Name $LogAnalyticsWorkspaceName
+    try {
+        # Attempt to get Log Analytics Workspace object
+        $LogAnalyticsWorkspace = Get-AzureRmOperationalInsightsWorkspace -ResourceGroupName $LogAnalyticsWorkspaceResourceGroupName -Name $LogAnalyticsWorkspaceName -ErrorAction "Stop"
+    }
+    catch {
+        try {
+            Write-Verbose -Message "The specified Log Analytics workspace doesn't exist. Creating now..."
+            New-AzureRmResourceGroup -Name $LogAnalyticsWorkspaceResourceGroupName -Location $LogAnalyticsWorkspaceLocation -ErrorAction "Stop"
+            $LogAnalyticsWorkspace = New-AzureRmOperationalInsightsWorkspace -ResourceGroupName $LogAnalyticsWorkspaceResourceGroupName -Name $LogAnalyticsWorkspaceName -Location $LogAnalyticsWorkspaceLocation -ErrorAction "Stop"
+        }
+        catch {
+            Write-Error -Message "Failed to create a Log Analytics Workspace with the name: $LogAnalyticsWorkspaceName in the resource group: $LogAnalyticsWorkspaceResourceGroupName with the following error: $($_.Exception.Message)."
+            break
+        }
+    }
 
     # Download required ARM template to enable the ContainerInsights solution
     # Ensure C:\temp\EnableMonitoring directory exists
