@@ -138,7 +138,7 @@ Both methods require the prerequisite of using an [Azure Resource Manager (ARM) 
 
 > [!IMPORTANT]
 > This method is **not** used by the [DeployAzSHKubernetes.ps1](linkhere) script.
-> This method should be used if you decide to enable monitoring for an already deployed Kubernetes cluster on Azure Stack Hub.
+> This method should be used if you decide to enable monitoring for an already deployed Kubernetes cluster on Azure Stack Hub which doesn't have monitoring enabled.
 
 1. Use the following PowerShell script to enable the **ContainerInsights** solution for a **Log Analytics Workspace**:
 
