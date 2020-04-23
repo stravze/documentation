@@ -81,6 +81,8 @@ Ask your Azure Stack Hub operator if the following prerequisites below have been
 
     - `ssh-keygen`
 
+* Have the Git CLI installed.
+
 * Ability to create a Secure Shell (SSH) to a remote machine using:
 
     - An SSH client
