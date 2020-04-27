@@ -85,7 +85,9 @@ Ask your Azure Stack Hub operator if the following prerequisites below have been
 
 * Ability to create a Secure Shell (SSH) to a remote machine using:
 
-    - An SSH client
+    - `ssh-agent`
+
+    - An SSH client of your choice.
 
 ## Deployment
 
@@ -245,7 +247,11 @@ Both methods require the prerequisite of using an [Azure Resource Manager (ARM) 
 
 This method utilises the [**container-monitoring**](https://github.com/Azure/aks-engine/blob/master/docs/tutorials/containermonitoringaddon.md) add-on to deploy **Operations Management Suite (OMS) agent** containers to monitor the Kubernetes cluster.
 
-To enable this functionality, provide the `-EnableMonitoring` switch when executing the [DeployAzSHKubernetes.ps1](linkhere) script. 
+To enable this functionality, provide the `-EnableMonitoring` switch when executing the [DeployAzSHKubernetes.ps1](linkhere) script.
+
+> [!IMPORTANT]
+> Once the cluster is deployed, it can take around five to ten minutes for the OMS agents to begin submitting data to the Log Analytics workspace.
+> You can view your Kubernetes cluster monitoring statistics via the [public Azure portal](https://aka.ms/azmon-containers).
 
 #### Kubernetes cluster dashboard
 
