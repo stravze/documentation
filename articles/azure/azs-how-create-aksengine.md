@@ -340,3 +340,35 @@ A useful feature provided by SSH agent is agent forwarding. This allows you to f
 3. SSH to the Kubernetes master node using the following command: `ssh -A azureuser@masternodeip`
 
 4. SSH from the Kubernetes master node to a worker node using the following command: `ssh -A azureuser@workernodeip`
+
+## Known issues
+
+UKCloud experienced an issue with external IPs for services being stuck in a **Pending** state:
+
+![External IP stuck in pending state](images/aks-cluster-pending-external-ip.png)
+
+When describing the service, the events showed a **SyncLoadBalanderFailed** error:
+
+![Sync loadbalancer failed](images/aks-cluster-sync-loadbalancer-failed.png)
+
+In the **Activity log** for the Kubernetes cluster's resource group, there was a **Write LoadBalancers** task failing:
+
+![Activity log write loadbalancers failing](images/aks-cluster-writeloadbalancer-error.png)
+
+The NICs for two out of the three worker nodes had an overall **failed** state
+
+To resolve this issue:
+
+1. Navigate to the NIC(s) for the worker nodes which had an overall **failed** state.
+
+2. Under *Settings*, select **IP configurations**.
+
+3. Under *IP forwarding settings*, select **Enabled**.
+
+    - This is done to re-apply the NIC's configuration.
+
+4. Wait for the configuration to re-apply.
+
+5. Under *IP forwarding settings*, select **Disabled**.
+
+6. Once the task has completed, the configuration should now have re-applied and the errors should disappear.
