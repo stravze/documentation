@@ -49,13 +49,16 @@ To complete the steps in this article, you must have appropriate access to a sub
     ![Disks blade - Select disk](images/azs-browser-vm-disks.png)
 
 6. In the selected disks' blade, under settings, select **Disk Export**.
-    
+
     ![Disks blade - Disk export](images/azs-browser-vm-disks-export.png)
 
     > [!IMPORTANT]
     > A disk cannot be exported if it is attached to a running VM. You will need to stop the VM first to be able to export the disk.
 
-7. If necessary, amend the URL expiry time, then select **Generate URL**.
+7. The default expiration time of the URL is *3600* seconds. Increase this to *36000* for Windows OS disks, otherwise leave as default, then select **Generate URL**.
+
+    > [!NOTE]
+    > The default expiration time should be sufficient for downloading small VHD files, such as those of Linux OS or Data disks, but will need to be increased when downloading larger files or if you're downloading over a slower connection.
 
 8. Once generated, the URL will be displayed in the current blade.
 
