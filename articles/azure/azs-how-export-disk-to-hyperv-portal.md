@@ -46,14 +46,25 @@ To complete the steps in this article, you must have appropriate access to a sub
 
 5. In the *Disks* blade, select the disk that you would like to export.
 
-    ![Disks blade - Select disk](images/wip.png)
+    ![Disks blade - Select disk](images/azs-browser-vm-disks.png)
 
 6. In the selected disks' blade, under settings, select **Disk Export**.
+    
+    ![Disks blade - Disk export](images/azs-browser-vm-disks-export.png)
 
     > [!IMPORTANT]
     > A disk cannot be exported if it is attached to a running VM. You will need to stop the VM first to be able to export the disk.
 
-7. 
+7. If necessary, amend the URL expiry time, then select **Generate URL**.
+
+8. Once generated, the URL will be displayed in the current blade.
+
+    ![Disks blade - Disk export](images/azs-browser-vm-disks-export-url.png)
+
+    > [!IMPORTANT]
+    > Ensure that you copy the URL elsewhere, as it will not be displayed again once you navigate away from the Disk Export blade.
+
+9. 
 
 ## Feedback
 
