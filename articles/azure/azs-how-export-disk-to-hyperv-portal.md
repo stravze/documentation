@@ -58,7 +58,7 @@ To complete the steps in this article, you must have appropriate access to a sub
 7. The default expiration time of the URL is *3600* seconds. Increase this to *36000* for Windows OS disks, otherwise leave as default, then select **Generate URL**.
 
     > [!NOTE]
-    > The default expiration time should be sufficient for downloading small VHD files, such as those of Linux OS or Data disks, but will need to be increased when downloading larger files or if you're downloading over a slower connection.
+    > The default expiration time should be sufficient for downloading small VHD files, such as those of Linux OS or Data disks, but will need to be increased when downloading larger files or if you're downloading over a slow connection.
 
 8. Once generated, the URL will be displayed in the current blade.
 
@@ -67,7 +67,11 @@ To complete the steps in this article, you must have appropriate access to a sub
     > [!IMPORTANT]
     > Ensure that you copy the URL elsewhere, as it will not be displayed again once you navigate away from the Disk Export blade.
 
-9. 
+9. Enter the URL in a browser to trigger the download of the VHD file.
+
+## Creating a virtual machine in Hyper-V Manager using the exported disk
+
+WIP
 
 ## Feedback
 
