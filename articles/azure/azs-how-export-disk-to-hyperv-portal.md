@@ -1,6 +1,6 @@
 ---
 title: How to export a disk and use it to create a VM in Hyper-V using the UKCloud Azure Stack Hub portal
-description: Details the process of exporting a disk from the UKCloud Azure Stack Hub and then using it to create a virtual machine in Hyper-V
+description: Details the process of exporting a disk in the UKCloud Azure Stack Hub portal and then using it to create a virtual machine in Hyper-V manager
 services: azure-stack
 author: William Turner
 reviewer: William Turner 
@@ -20,11 +20,7 @@ toc_mdlink: azs-how-export-disk-to-hyperv-portal.md
 
 ## Overview
 
---REPLACE
-
-    UKCloud for Microsoft Azure supports the use of managed disks on virtual machines (VMs). You can use managed disks as both OS disks and data disks.
-    For more information, see [Introduction to Azure managed disks](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/managed-disks-overview).    
-    The following article shows you how to add a managed disk to a VM using the UKCloud Azure Stack Hub portal.
+The following article shows you how to export a disk in the UKCloud Azure Stack Hub portal and use it to create a virtual machine in Hyper-V manager.
 
 ## Intended audience
 
@@ -48,7 +44,16 @@ To complete the steps in this article, you must have appropriate access to a sub
 
     ![Virtual machine disk button](images/azs-browser-button-vm-disks-setting.png)
 
-5. In the *Disks* blade, 
+5. In the *Disks* blade, select the disk that you would like to export.
+
+    ![Disks blade - Select disk](images/wip.png)
+
+6. In the selected disks' blade, under settings, select **Disk Export**.
+
+    > [!IMPORTANT]
+    > A disk cannot be exported if it is attached to a running VM. You will need to stop the VM first to be able to export the disk.
+
+7. 
 
 ## Feedback
 
