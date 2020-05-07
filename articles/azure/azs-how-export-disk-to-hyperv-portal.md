@@ -69,10 +69,6 @@ To complete the steps in this article, you must have appropriate access to a sub
 
 9. Enter the URL in a browser to trigger the download of the VHD file.
 
-## Creating a virtual machine in Hyper-V Manager using the exported disk
-
-WIP
-
 ## Feedback
 
 If you find a problem with this article, click **Improve this Doc** to make the change yourself or raise an [issue](https://github.com/UKCloud/documentation/issues) in GitHub. If you have an idea for how we could improve any of our services, send an email to <feedback@ukcloud.com>.
