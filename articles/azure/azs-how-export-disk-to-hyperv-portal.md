@@ -69,6 +69,36 @@ To complete the steps in this article, you must have appropriate access to a sub
 
 9. Enter the URL in a browser to trigger the download of the VHD file.
 
+## Creating a virtual machine in Hyper-V using the downloaded VHD file
+
+1. Open Hyper-V Manager and connect to your server.
+
+2. In the *Actions* pane on the right, select **New** and then **Virtual machine...**
+
+    ![Hyper-V - Actions pane](images/azs-hyperv-actions-pane.png)
+
+3. Enter a name for the virtual machine and choose a location to store it in, then click **Next**.
+
+    ![Hyper-V - Name & location](images/azs-hyperv-new-name.png)
+
+4. Ensure **Generation 1** is selected, then click **Next**.
+
+    > [!IMPORTANT]
+    > Generation 2 virtual machines only support VHDX format virtual hard drives.
+
+    ![Hyper-V - Generation](images/azs-hyperv-new-gen.png)
+
+5. For memory, you should try to use at least the same amount that was assigned to the virtual machine in Azure Stack Hub. Click **Next** when you're done.
+
+    > [!TIP]
+    > Ideally, you should try to allocate the same amount of memory that was allocated to the virtual machine in Azure Stack Hub.
+
+    ![Hyper-V - Memory](images/azs-hyperv-new-memory.png)
+
+6. If applicable, select a network adapter from the **Connection** dropdown, then click **Next**.
+
+    ![Hyper-V - Network](images/azs-hyperv-new-network.png)
+
 ## Feedback
 
 If you find a problem with this article, click **Improve this Doc** to make the change yourself or raise an [issue](https://github.com/UKCloud/documentation/issues) in GitHub. If you have an idea for how we could improve any of our services, send an email to <feedback@ukcloud.com>.
