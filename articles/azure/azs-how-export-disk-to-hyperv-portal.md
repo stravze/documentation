@@ -99,6 +99,10 @@ To complete the steps in this article, you must have appropriate access to a sub
 
     ![Hyper-V - Network](images/azs-hyperv-new-network.png)
 
+7. Select the **Use an existing virtual hard disk** option, and specify the location of the VHD files that was downloaded earlier, then click **Next**.
+
+    ![Hyper-V - Disk](images/azs-hyperv-new-disks.png)
+
 ## Feedback
 
 If you find a problem with this article, click **Improve this Doc** to make the change yourself or raise an [issue](https://github.com/UKCloud/documentation/issues) in GitHub. If you have an idea for how we could improve any of our services, send an email to <feedback@ukcloud.com>.
