@@ -103,6 +103,10 @@ To complete the steps in this article, you must have appropriate access to a sub
 
     ![Hyper-V - Disk](images/azs-hyperv-new-disks.png)
 
+8. Review the details for the virtual machine, then click **Finish**.
+
+    ![Hyper-V - Summary](images/azs-hyperv-new-summary.png)
+
 ## Feedback
 
 If you find a problem with this article, click **Improve this Doc** to make the change yourself or raise an [issue](https://github.com/UKCloud/documentation/issues) in GitHub. If you have an idea for how we could improve any of our services, send an email to <feedback@ukcloud.com>.
