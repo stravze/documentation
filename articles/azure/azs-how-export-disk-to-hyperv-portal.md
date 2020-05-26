@@ -22,6 +22,11 @@ toc_mdlink: azs-how-export-disk-to-hyperv-portal.md
 
 The following article shows you how to export a disk in the UKCloud Azure Stack Hub portal and use it to create a virtual machine in Hyper-V manager.
 
+High-level overview of the process:
+WIP
+
+Process is substantially slower due to the VHD download process
+
 ## Intended audience
 
 To complete the steps in this article, you must have appropriate access to a subscription in the Azure Stack Hub portal.
@@ -106,6 +111,20 @@ To complete the steps in this article, you must have appropriate access to a sub
 8. Review the details for the virtual machine, then click **Finish**.
 
     ![Hyper-V - Summary](images/azs-hyperv-new-summary.png)
+
+# Importing back into Azure after fixing VM
+
+* Create storage account in portal
+
+* Use storage explorer to upload VHD to storage account
+
+* In portal, go to All Services --> Disks and create a new managed disk from the blob
+
+* Delete the existing VM, keeping all the network resources
+
+* Create a new VM from the disk, using the existing network resources plus a new NIC
+
+* Attach the old NIC to new VM, then detach & delete the 'new' NIC
 
 ## Feedback
 
