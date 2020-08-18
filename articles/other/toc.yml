@@ -38,8 +38,6 @@
     href: other-ref-hadoop-proposition.md
   - name: Cloud economics
     href: other-ref-cloud-economics.md
-  - name: Customer administration page
-    href: other-ref-customer-admin.md
   - name: Data centre advance notice requirements
     href: other-ref-dc-notice.md
   - name: External security review testing
@@ -66,10 +64,6 @@
     href: other-ref-product-overview.md
   - name: Services by region
     href: other-ref-services-by-region.md
-  - name: Services by zone
-    href: other-ref-services-by-zone.md
-  - name: Sites, regions and zones map and reference table
-    href: other-ref-srz-table.md
   - name: SLA definition
     href: other-ref-sla-definition.md
   - name: System requirements for services on the UKCloud platform

@@ -4,7 +4,7 @@ description: Information on latest features included in a Portal update
 services: portal
 author: Sue Highmoor
 reviewer: ccampbell
-lastreviewed: 20/03/2020
+lastreviewed: 14/07/2020
 toc_rootlink: Reference
 toc_sub1:
 toc_sub2:
@@ -18,6 +18,60 @@ toc_mdlink: ptl-ref-release-notes.md
 # Portal release notes
 
 This article provides a list of completed Portal releases.
+
+## Release 1.144.0
+
+Date: 14th July 2020
+
+Bug fix
+
+Details:
+
+- Prevented situation where a customer might be presented with a blank page when switching to a newly created account
+
+## Release 1.143.0
+
+Date: 7th July 2020
+
+Feature update
+
+Details:
+
+- Passwords must now be a minimum of 12 characters and not contain personal information
+
+- Captcha has been removed from the forgotten password page
+
+## Release 1.141.1
+
+Date: 24th June 2020
+
+Bug fix
+
+Details:
+
+- Improved page flow when session timeout occurs
+
+## Release 1.141.0
+
+Date: 18th June 2020
+
+Performance update
+
+Details:
+
+- Improve efficiency of Portal API compute service endpoint
+
+## Release 1.139.0
+
+Date: 13th May 2020
+
+Feature update
+
+Details:
+
+- Disable ability for users to change their emails.
+
+- Remove unneeded VM sizes field from billing table.
 
 ## Release 1.132.0
 

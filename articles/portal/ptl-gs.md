@@ -3,8 +3,8 @@ title: Getting Started Guide for the UKCloud Portal
 description: Provides information to get up and running with the UKCloud Portal
 services: portal
 author: Sue Highmoor
-reviewer: wllewellyn
-lastreviewed: 24/10/2019
+reviewer: shighmoor
+lastreviewed: 02/06/2020
 
 toc_rootlink: Getting Started
 toc_sub1:
@@ -22,17 +22,23 @@ toc_mdlink: ptl-gs.md
 
 The UKCloud Portal is the gateway to your UKCloud services. In the Portal, you can:
 
-- View information about your UKCloud services, including UKCloud for VMware, UKCloud for OpenStack, UKCloud for Microsoft Azure and Cloud Storage
+- Raise and monitor support tickets
 
 - View notifications relating to the UKCloud platform
+
+- View cyber security news and security events
+
+- View information about your UKCloud for VMware service, including VM information and backup reports
 
 - Create compute services, virtual data centres (VDCs) and edge gateways within your UKCloud for VMware environment
 
 - Access vCloud Director to work with your UKCloud for VMware environment, for example to create and manage virtual machines (VMs), build VDC networks or configure your firewall
 
-- Raise and monitor support tickets
+- Access the OpenStack Horizon dashboard to work with your UKCloud for OpenStack environment, for example to build your network infrastructure, set up access and security and launch instances
 
-- Access Knowledge Centre articles to help you understand and work with the UKCloud platform
+- Access the Azure Stack Hub portal to manage your UKCloud for Microsoft Azure environment, for example to create virtual machines
+
+- View information about your Cloud Storage service, including secret keys and storage consumption
 
 This Getting Started Guide provides an overview of the functionality available within the Portal.
 
@@ -41,7 +47,7 @@ This Getting Started Guide provides an overview of the functionality available w
 This Getting Started Guide is intended for any user with access to the Portal.
 
 > [!NOTE]
-> The options you can see and tasks you can perform within the Portal depend on the permissions you've been granted by your Portal administrator.
+> The options you can see and tasks you can perform within the Portal depend on the services available in your account and the permissions you've been granted by your Portal administrator.
 
 ## Before you begin
 
@@ -59,7 +65,7 @@ The first thing you need to do is log in.
 
     - **Elevated OFFICIAL:** Contact your Portal administrator or SDM
 
-2. On the *Log in* page, enter your credentials and click **Sign in**.
+2. On the log in page, enter your credentials and click **Log in**.
 
     ![UKCloud Portal Log in page](images/ptl-login.png)
 
@@ -71,7 +77,7 @@ The first thing you need to do is log in.
     > [!NOTE]
     > If you incorrectly enter your password three times, you'll be prompted to enter a captcha code until you successfully log in. If you incorrectly enter the captcha code or your password another three times, a seventh unsuccessful login attempt will result in your account being locked. You'll need to contact your Portal administrator to unlock your account.
 
-3. If your Portal administrator has enabled two-factor authentication (2FA), you'll be prompted to enter a six digit code. Use your 2FA app to generate the code and enter it here. (If this is the first time you've logged in, you'll be prompted to set up 2FA).
+3. If your Portal administrator has enabled two-factor authentication (2FA), you'll be prompted to enter a six digit code. Use your 2FA app to generate the code and enter it here. (If this is the first time you've logged in, you'll be prompted to set up 2FA; see [*How to set up two-factor authentication for a user account*](ptl-how-setup-2fa.md)).
 
     ![Two-Factor Authentication dialog box](images/ptl-2fa.png)
 
@@ -105,7 +111,7 @@ In the toolbar, you can also click your username to access the following options
     > [!TIP]
     > The number next to the **Notifications** menu option (and next to your username in the toolbar) shows how many unread notifications you have.
 
-- **Update contact details** - Change your name, email address and telephone numbers. You can also opt to have Portal notifications sent to your email address.
+- **Update contact details** - Change your name and telephone numbers. You can also opt to have Portal notifications sent to your email address.
 
 - **Change Password** - Change your password or memorable word. We recommend that you change your password at least every 90 days (see [*How to reset your UKCloud Portal password or memorable word*](ptl-how-reset-password.md)).
 
@@ -116,7 +122,7 @@ In the toolbar, you can also click your username to access the following options
 
 - **API** - View the information you need to use the vCloud API (see [*How to access vCloud Director through the vCloud API*](../vmware/vmw-how-access-vcloud-api.md)).
 
-- **Feedback** - Send an email to UKCloud with feedback on the Portal or any other aspect of your UKCloud experience.
+- **Feedback** - Send an email to UKCloud (<feedback@ukcloud.com>) with feedback on the Portal or any other aspect of your UKCloud experience.
 
 - **Log out** - Log out of the Portal.
 
@@ -170,7 +176,7 @@ The Portal navigation panel provides access to all the functionality available i
 
   - The Knowledge Centre
 
-  - My Calls (see [*How to use My Calls in the UKCloud Portal*](ptl-how-use-my-calls.md))
+  - My Calls (see [*How to use My Calls to raise and monitor support tickets*](ptl-how-use-my-calls.md))
 
   - Service status information (see [*How to view the UKCloud Service Status page*](../other/other-how-view-status-info.md))
 
@@ -180,7 +186,7 @@ The Portal navigation panel provides access to all the functionality available i
 
   - The Zerto Self-Service Portal (ZSSP) where you can manage Journaling Protection, Disaster Recovery to the Cloud and Workload Migration to the Cloud (see [*How to perform a failover*](../vmware/vmw-how-zerto-perform-failover.md)).
 
-- **Communities** - Access the UKCloud site on GitHub, the UKCloud Community and UKCloud Ideas.
+- **Communities** - Access the UKCloud Community LinkedIn group, Content Hub and UKCloud repositories on GitHub.
 
 ### Content area
 
@@ -201,7 +207,7 @@ When you've finished working in the Portal, we recommend that you log out to pre
 
 ## Using the UKCloud Portal API
 
-The Portal also provides an API to enable you to interact programmatically with your UKCloud environment. For example, you can use the Portal API to view information about the components of your environment and create compute services, virtual data centres and edge gateways.
+The Portal also provides an API to enable you to interact programmatically with your UKCloud environment. For example, you can use the Portal API to view information about the components of your environment and create compute services, VDCs and edge gateways.
 
 The entry point URL for the Portal API is:
 
@@ -218,6 +224,8 @@ In this Getting Started Guide, you've learned the basics about the Portal and th
 ## Related videos
 
 - [*UKCloud Portal overview video*](ptl-vid-portal.md)
+
+- [*Creating support tickets in My Calls*](ptl-vid-mycalls.md)
 
 ## Glossary
 
