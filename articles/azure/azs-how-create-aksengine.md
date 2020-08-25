@@ -77,6 +77,8 @@ Ask your Azure Stack Hub operator if the following prerequisites below have been
 
 * PowerShell 5.1
 
+* [Git CLI](https://git-scm.com/)
+
 * OpenSSH
 
     > [!NOTE]
