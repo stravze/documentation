@@ -20,7 +20,7 @@ toc_mdlink: azs-how-create-aksengine.md
 
 ## Overview
 
-The AKS engine command-line utility allows Azure Stack Hub tenants to deploy and manage a Kubernetes cluster.
+The [AKS engine command-line utility](https://github.com/Azure/aks-engine/tree/master/) allows Azure Stack Hub tenants to deploy and manage a Kubernetes cluster.
 AKS engine can be used to create, upgrade, scale and maintain Azure Resource Manager native clusters running on VMs and other infrastructure-as-a-service (IaaS) resources on Azure Stack Hub.
 
 [Kubernetes on Azure Stack Hub in GA](https://azure.microsoft.com/en-gb/updates/kubernetes-on-azure-stack-in-ga/)
@@ -58,7 +58,7 @@ Ask your Azure Stack Hub operator if the following prerequisites below have been
 
 * AKS base Ubuntu image >= **2020.05.13**
 
-    - **Image name:** AKS Base Ubuntu 16.04-LTS Image
+    - **Image name:** AKS Base Ubuntu 16.04-LTS Image Distro
 
     - **Offer:** aks
 
@@ -87,8 +87,6 @@ Ask your Azure Stack Hub operator if the following prerequisites below have been
     - `ssh-agent`
 
     - `ssh-keygen`
-
-* Git CLI
 
 * [`AzureStack` PowerShell module](https://docs.ukcloud.com/articles/azure/azs-how-configure-powershell-users.html#install-azure-stack-hub-powershell)
 
@@ -146,19 +144,22 @@ For additional security, the following Network Security Group (NSG) rules are co
 > For the Windows client VM deployment, we spent a lot of time troubleshooting issues with OpenSSH server.
 > We experienced the following issues:
 >
->     * We could not achieve SSH agent forwarding from the client VM -> Kubernetes master node ->  Kubernetes worker node
+> * We could not achieve SSH agent forwarding from the client VM -> Kubernetes master node ->  Kubernetes worker node
 >
->     * We managed to achieve the first hop (from the client VM to the Kubernetes master node) however, we couldn't achieve the final hop to the Kubernetes worker node.
+> * We managed to achieve the first hop (from the client VM to the Kubernetes master node) however, we couldn't achieve the final hop to the Kubernetes worker node(s).
 >
->     * We made sure that each ssh-agent configuration used `ForwardAgent yes` and the SSH server configuration with `AllowAgentForwarding yes` set.
+> * We made sure that each ssh-agent configuration used `ForwardAgent yes` and the SSH server configuration with `AllowAgentForwarding yes` set.
 >
->     * We tested with PowerShell 5 and 7.
+> * We tested with PowerShell 5 and 7.
 >
->     * We experienced that with an active RDP session, everything began working as expected.
+> * We experienced that with an active RDP session, everything began working as expected.
 
 ### Enabling cluster monitoring
 
 You can choose to enable monitoring of your Kubernetes cluster on Azure Stack Hub. There are two methods provided by Microsoft.
+
+> [!NOTE]
+> In order to enable monitoring for your Kubernetes cluster on Azure Stack Hub, you will need an active public Azure subscription.
 
 #### Prerequisite step
 
@@ -281,7 +282,7 @@ Both methods require the prerequisite of using an [Azure Resource Manager (ARM) 
 > This method **is used** by the [DeployAshKubernetes.ps1](linkhere) script.
 > This method performs the [prerequisite step](#prerequisite-step) during the deployment.
 
-This method utilises the [**container-monitoring**](https://github.com/Azure/aks-engine/blob/master/docs/tutorials/containermonitoringaddon.md) add-on to deploy **Operations Management Suite (OMS) agent** containers to monitor the Kubernetes cluster.
+This method utilises the [container-monitoring](https://github.com/Azure/aks-engine/blob/master/docs/tutorials/containermonitoringaddon.md) add-on to deploy **Operations Management Suite (OMS) agent** containers to monitor the Kubernetes cluster on Azure Stack Hub.
 
 To enable this functionality, provide the `-EnableMonitoring` switch when executing the [DeployAshKubernetes.ps1](linkhere) script.
 
@@ -291,7 +292,7 @@ To enable this functionality, provide the `-EnableMonitoring` switch when execut
 
 #### Kubernetes cluster dashboard
 
-Provide the `-EnableDashboard` switched to the [DeployAshKubernetes.ps1](linkhere) script to be provided with access to the Kubernetes cluster dashboard.
+Provide the `-EnableDashboard` switch to the [DeployAshKubernetes.ps1](linkhere) script to be provided with access to the Kubernetes cluster dashboard.
 
 ## Deploying the AKS engine client VM and Kubernetes cluster
 
@@ -310,6 +311,7 @@ Enter details below to provide values for the variables in the following command
 | \$ClusterResourceGroupName   | The resource group name to deploy the Kubernetes cluster into.         | <form oninput="result.value=clusterresourcegroupname.value" id="clusterresourcegroupname" style="display: inline;"><input type="text" id="clusterresourcegroupname" name="clusterresourcegroupname" style="display: inline;" placeholder="kube-rg"/></form> |
 | \$MasterNodeCount  | The number of master nodes to deploy the Kubernetes cluster with.                                | <form oninput="result.value=masternodecount.value" id="masternodecount" style="display: inline;"><input type="text" id="masternodecount" name="masternodecount" style="display: inline;" placeholder="3"/></form> |
 | \$WorkerNodeCount       | The number of worker nodes to deploy the Kubernetes cluster with.                   | <form oninput="result.value=workernodecount.value" id="workernodecount" style="display: inline;"><input type="text" id="workernodecount" name="workernodecount" style="display: inline;" placeholder="3"/></form> |
+| \$KubernetesVersion       | The version of Kubernetes to deploy using AKS engine.                   | <form oninput="result.value=kubernetesversion.value" id="kubernetesversion" style="display: inline;"><input type="text" id="kubernetesversion" name="kubernetesversion" style="display: inline;" placeholder="1.16.9"/></form> |
 | -EnableMonitoring (switch) | Enable Azure Monitor for containers and ContainerInsights for a Log Analytics Workspace.       | <form onchange="result.value=enablemonitoring.value" id="enablemonitoring" style="display: inline;"><select name="enablemonitoring" id="enablemonitoring" style="display: inline;"><option value=" -EnableMonitoring">Enable</option><option value="">Disable</option></select></form> |
 | \$LogAnalyticsWorkspaceName   | The name of the Log Analytics Workspace.        | <form oninput="result.value=loganalyticsworkspacename1.value" id="loganalyticsworkspacename1" style="display: inline;"><input type="text" id="loganalyticsworkspacename1" name="loganalyticsworkspacename1" style="display: inline;" placeholder="kubernetes-cluster-workspace"/></form> |
 | \$LogAnalyticsWorkspaceResourceGroupName   | The name of the resource group which the Log Analytics Workspace resides in.        | <form oninput="result.value=loganalyticsworkspaceresourcegroupname1.value" id="loganalyticsworkspaceresourcegroupname1" style="display: inline;"><input type="text" id="loganalyticsworkspaceresourcegroupname1" name="loganalyticsworkspaceresourcegroupname1" style="display: inline;" placeholder="kubernetes-cluster-workspace-rg"/></form> |
@@ -319,13 +321,13 @@ Enter details below to provide values for the variables in the following command
 1. Clone the Github repo using the following command:
 
     ```bash
-    git clone x && cd /path/to/dir
+    git clone x; cd /path/to/dir
     ```
 
 2. Execute the deployment script using the following command:
 
     <pre><code class="language-PowerShell">
-    .\DeployAshKubernetes.ps1 -TenantId "<output form="TenantId" name="result" style="display: inline;">contoso.onmicrosoft.com</output>" -ArmEndpoint "<output form="armendpoint" name="result" style="display: inline;">https://management.frn00006.azure.ukcloud.com</output>" -TenantPortalUrl "<output form="tenantportalurl" name="result" style="display: inline;">https://portal.frn00006.azure.ukcloud.com</output>" -AllowedIpAddresses <output form="AllowedIpAddresses" name="result" style="display: inline;">"127.0.0.1","192.168.0.1"</output> -ClusterResourceGroupName "<output form="clusterresourcegroupname" name="result" style="display: inline;">kube-rg</output>" -MasterNodeCount <output form="masternodecount" name="result" style="display: inline;">3</output> -WorkerNodeCount <output form="workernodecount" name="result" style="display: inline;">3</output><output form="enabledashboard" name="result" style="display: inline;"> -EnableDashboard</output><output form="enablemonitoring" name="result" style="display: inline;"> -EnableMonitoring</output> -LogAnalyticsWorkspaceName "<output form="loganalyticsworkspacename1" name="result" style="display: inline;">kubernetes-cluster-workspace</output>" -LogAnalyticsWorkspaceResourceGroupName "<output form="loganalyticsworkspaceresourcegroupname1" name="result" style="display: inline;">kubernetes-cluster-workspace-rg</output>" -LogAnalyticsWorkspaceLocation "<output form="loganalyticsworkspacelocation1" name="result" style="display: inline;">UK South</output>" -Verbose
+    .\DeployAshKubernetes.ps1 -TenantId "<output form="TenantId" name="result" style="display: inline;">contoso.onmicrosoft.com</output>" -ArmEndpoint "<output form="armendpoint" name="result" style="display: inline;">https://management.frn00006.azure.ukcloud.com</output>" -TenantPortalUrl "<output form="tenantportalurl" name="result" style="display: inline;">https://portal.frn00006.azure.ukcloud.com</output>" -AllowedIpAddresses <output form="AllowedIpAddresses" name="result" style="display: inline;">"127.0.0.1","192.168.0.1"</output> -ClusterResourceGroupName "<output form="clusterresourcegroupname" name="result" style="display: inline;">kube-rg</output>" -MasterNodeCount <output form="masternodecount" name="result" style="display: inline;">3</output> -WorkerNodeCount <output form="workernodecount" name="result" style="display: inline;">3</output> -KubernetesVersion "<output form="kubernetesversion" name="result" style="display: inline;">1.16.9</output>"<output form="enabledashboard" name="result" style="display: inline;"> -EnableDashboard</output><output form="enablemonitoring" name="result" style="display: inline;"> -EnableMonitoring</output> -LogAnalyticsWorkspaceName "<output form="loganalyticsworkspacename1" name="result" style="display: inline;">kubernetes-cluster-workspace</output>" -LogAnalyticsWorkspaceResourceGroupName "<output form="loganalyticsworkspaceresourcegroupname1" name="result" style="display: inline;">kubernetes-cluster-workspace-rg</output>" -LogAnalyticsWorkspaceLocation "<output form="loganalyticsworkspacelocation1" name="result" style="display: inline;">UK South</output>" -Verbose
     </code></pre>
 
 ## [Windows](#tab/tabid-2)
@@ -344,6 +346,7 @@ Enter details below to provide values for the variables in the following command
 | \$ClusterResourceGroupName   | The resource group name to deploy the Kubernetes cluster into.         | <form oninput="result.value=clusterresourcegroupname1.value" id="clusterresourcegroupname1" style="display: inline;"><input type="text" id="clusterresourcegroupname1" name="clusterresourcegroupname1" style="display: inline;" placeholder="kube-rg"/></form> |
 | \$MasterNodeCount  | The number of master nodes to deploy the Kubernetes cluster with.                                | <form oninput="result.value=masternodecount1.value" id="masternodecount1" style="display: inline;"><input type="text" id="masternodecount1" name="masternodecount1" style="display: inline;" placeholder="3"/></form> |
 | \$WorkerNodeCount       | The number of worker nodes to deploy the Kubernetes cluster with.                   | <form oninput="result.value=workernodecount1.value" id="workernodecount1" style="display: inline;"><input type="text" id="workernodecount1" name="workernodecount1" style="display: inline;" placeholder="3"/></form> |
+| \$KubernetesVersion       | The version of Kubernetes to deploy using AKS engine.                   | <form oninput="result.value=kubernetesversion1.value" id="kubernetesversion1" style="display: inline;"><input type="text" id="kubernetesversion1" name="kubernetesversion1" style="display: inline;" placeholder="1.16.9"/></form> |
 | -EnableMonitoring (switch) | Enable Azure Monitor for containers and ContainerInsights for a Log Analytics Workspace.       | <form onchange="result.value=enablemonitoring1.value" id="enablemonitoring1" style="display: inline;"><select name="enablemonitoring1" id="enablemonitoring1" style="display: inline;"><option value=" -EnableMonitoring">Enable</option><option value="">Disable</option></select></form> |
 | \$LogAnalyticsWorkspaceName   | The name of the Log Analytics Workspace.        | <form oninput="result.value=loganalyticsworkspacename2.value" id="loganalyticsworkspacename2" style="display: inline;"><input type="text" id="loganalyticsworkspacename2" name="loganalyticsworkspacename2" style="display: inline;" placeholder="kubernetes-cluster-workspace"/></form> |
 | \$LogAnalyticsWorkspaceResourceGroupName   | The name of the resource group which the Log Analytics Workspace resides in.        | <form oninput="result.value=loganalyticsworkspaceresourcegroupname2.value" id="loganalyticsworkspaceresourcegroupname2" style="display: inline;"><input type="text" id="loganalyticsworkspaceresourcegroupname2" name="loganalyticsworkspaceresourcegroupname2" style="display: inline;" placeholder="kubernetes-cluster-workspace-rg"/></form> |
@@ -354,13 +357,13 @@ Enter details below to provide values for the variables in the following command
 1. Clone the Github repo using the following command:
 
     ```bash
-    git clone x && cd /path/to/dir
+    git clone x; cd /path/to/dir
     ```
 
 2. Execute the deployment script using the following command:
 
     <pre><code class="language-PowerShell">
-    .\DeployAshKubernetes.ps1 -TenantId "<output form="TenantId1" name="result" style="display: inline;">contoso.onmicrosoft.com</output>" -ArmEndpoint "<output form="armendpoint1" name="result" style="display: inline;">https://management.frn00006.azure.ukcloud.com</output>" -TenantPortalUrl "<output form="tenantportalurl1" name="result" style="display: inline;">https://portal.frn00006.azure.ukcloud.com</output>" -Windows -WindowsVMPassword "<output form="windowsvmpassword" name="result" style="display: inline;">Password123!</output>" -AllowedIpAddresses <output form="AllowedIpAddresses1" name="result" style="display: inline;">"127.0.0.1","192.168.0.1"</output> -ClusterResourceGroupName "<output form="clusterresourcegroupname1" name="result" style="display: inline;">kube-rg</output>" -MasterNodeCount <output form="masternodecount1" name="result" style="display: inline;">3</output> -WorkerNodeCount <output form="workernodecount1" name="result" style="display: inline;">3</output><output form="enabledashboard1" name="result" style="display: inline;"> -EnableDashboard</output><output form="enablemonitoring1" name="result" style="display: inline;"> -EnableMonitoring</output> -LogAnalyticsWorkspaceName "<output form="loganalyticsworkspacename2" name="result" style="display: inline;">kubernetes-cluster-workspace</output>" -LogAnalyticsWorkspaceResourceGroupName "<output form="loganalyticsworkspaceresourcegroupname2" name="result" style="display: inline;">kubernetes-cluster-workspace-rg</output>" -LogAnalyticsWorkspaceLocation "<output form="loganalyticsworkspacelocation2" name="result" style="display: inline;">UK South</output>" -Verbose
+    .\DeployAshKubernetes.ps1 -TenantId "<output form="TenantId1" name="result" style="display: inline;">contoso.onmicrosoft.com</output>" -ArmEndpoint "<output form="armendpoint1" name="result" style="display: inline;">https://management.frn00006.azure.ukcloud.com</output>" -TenantPortalUrl "<output form="tenantportalurl1" name="result" style="display: inline;">https://portal.frn00006.azure.ukcloud.com</output>" -Windows -WindowsVMPassword "<output form="windowsvmpassword" name="result" style="display: inline;">Password123!</output>" -AllowedIpAddresses <output form="AllowedIpAddresses1" name="result" style="display: inline;">"127.0.0.1","192.168.0.1"</output> -ClusterResourceGroupName "<output form="clusterresourcegroupname1" name="result" style="display: inline;">kube-rg</output>" -MasterNodeCount <output form="masternodecount1" name="result" style="display: inline;">3</output> -WorkerNodeCount <output form="workernodecount1" name="result" style="display: inline;">3</output> -KubernetesVersion "<output form="kubernetesversion1" name="result" style="display: inline;">1.16.9</output>"<output form="enabledashboard1" name="result" style="display: inline;"> -EnableDashboard</output><output form="enablemonitoring1" name="result" style="display: inline;"> -EnableMonitoring</output> -LogAnalyticsWorkspaceName "<output form="loganalyticsworkspacename2" name="result" style="display: inline;">kubernetes-cluster-workspace</output>" -LogAnalyticsWorkspaceResourceGroupName "<output form="loganalyticsworkspaceresourcegroupname2" name="result" style="display: inline;">kubernetes-cluster-workspace-rg</output>" -LogAnalyticsWorkspaceLocation "<output form="loganalyticsworkspacelocation2" name="result" style="display: inline;">UK South</output>" -Verbose
     </code></pre>
 
 ***
@@ -378,35 +381,3 @@ A useful feature provided by SSH agent is agent forwarding. This allows you to f
 3. SSH to the Kubernetes master node using the following command: `ssh -A azureuser@masternodeip`
 
 4. SSH from the Kubernetes master node to a worker node using the following command: `ssh -A azureuser@workernodeip`
-
-## Known issues
-
-UKCloud experienced an issue with external IPs for services being stuck in a **Pending** state:
-
-![External IP stuck in pending state](images/aks-cluster-pending-external-ip.png)
-
-When describing the service, the events showed a **SyncLoadBalanderFailed** error:
-
-![Sync loadbalancer failed](images/aks-cluster-sync-loadbalancer-failed.png)
-
-In the **Activity log** for the Kubernetes cluster's resource group, there was a **Write LoadBalancers** task failing:
-
-![Activity log write loadbalancers failing](images/aks-cluster-writeloadbalancer-error.png)
-
-The NICs for two out of the three worker nodes had an overall **failed** state
-
-To resolve this issue:
-
-1. Navigate to the NIC(s) for the worker nodes which had an overall **failed** state.
-
-2. Under *Settings*, select **IP configurations**.
-
-3. Under *IP forwarding settings*, select **Enabled**.
-
-    - This is done to re-apply the NIC's configuration.
-
-4. Wait for the configuration to re-apply.
-
-5. Under *IP forwarding settings*, select **Disabled**.
-
-6. Once the task has completed, the configuration should now have re-applied and the errors should disappear.
