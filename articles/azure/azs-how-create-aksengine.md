@@ -197,12 +197,12 @@ Both methods require the prerequisite of using an [Azure Resource Manager (ARM) 
 
     # Check if the Log Analytics resource group exists, If it doesn't exist then create it
     try {
-        $LogAnalyticsWorkspaceResourceGroup = Get-AzureRmResourceGroup -Name $LogAnalyticsWorkspaceResourceGroupName -Location $LogAnalyticsWorkspaceLocation -ErrorAction "Stop"
+        $LogAnalyticsWorkspaceResourceGroup = Get-AzureRmResourceGroup -Name $LogAnalyticsWorkspaceResourceGroupName -Location $LogAnalyticsWorkspaceLocation -ErrorAction Stop
     }
     catch {
         Write-Warning -Message "Log Analytics workspace resource group ""$($LogAnalyticsWorkspaceResourceGroupName)"" doesn't exist. Creating now..."
         try {
-            $LogAnalyticsWorkspaceResourceGroup = New-AzureRmResourceGroup -Name $LogAnalyticsWorkspaceResourceGroupName -Location $LogAnalyticsWorkspaceLocation -ErrorAction "Stop"
+            $LogAnalyticsWorkspaceResourceGroup = New-AzureRmResourceGroup -Name $LogAnalyticsWorkspaceResourceGroupName -Location $LogAnalyticsWorkspaceLocation -ErrorAction Stop
         }
         catch {
             throw "Failed to create Log Analytics workspace resource group ""$($LogAnalyticsWorkspaceResourceGroupName)"":`n$($_.Exception.Message)"
@@ -211,12 +211,12 @@ Both methods require the prerequisite of using an [Azure Resource Manager (ARM) 
     # Check if the Log Analytics workspace exists, If it doesn't exist then create it
     try {
         Write-Verbose "Attempting to retrieve Log Analytics workspace ""$($LogAnalyticsWorkspaceName)"" in resource group ""$($LogAnalyticsWorkspaceResourceGroupName)""."
-        $LogAnalyticsWorkspace = Get-AzureRmOperationalInsightsWorkspace -ResourceGroupName $LogAnalyticsWorkspaceResourceGroup.ResourceGroupName -Name $LogAnalyticsWorkspaceName -ErrorAction "Stop"
+        $LogAnalyticsWorkspace = Get-AzureRmOperationalInsightsWorkspace -ResourceGroupName $LogAnalyticsWorkspaceResourceGroup.ResourceGroupName -Name $LogAnalyticsWorkspaceName -ErrorAction Stop
     }
     catch {
         try {
             Write-Warning -Message "Log Analytics workspace ""$($LogAnalyticsWorkspaceName)"" doesn't exist. Creating now..."
-            $LogAnalyticsWorkspace = New-AzureRmOperationalInsightsWorkspace -ResourceGroupName $LogAnalyticsWorkspaceResourceGroup.ResourceGroupName -Name $LogAnalyticsWorkspaceName -Location $LogAnalyticsWorkspaceLocation -ErrorAction "Stop"
+            $LogAnalyticsWorkspace = New-AzureRmOperationalInsightsWorkspace -ResourceGroupName $LogAnalyticsWorkspaceResourceGroup.ResourceGroupName -Name $LogAnalyticsWorkspaceName -Location $LogAnalyticsWorkspaceLocation -ErrorAction Stop
         }
         catch {
             throw "Failed to create Log Analytics workspace ""$($LogAnalyticsWorkspaceName)"" in resource group ""$($LogAnalyticsWorkspaceResourceGroupName)"":`n$($_.Exception.Message)"
