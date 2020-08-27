@@ -122,7 +122,7 @@ The [DeployAshKubernetes.ps1](linkhere) creates the following high level resourc
 
 ### AKS engine client VM
 
-The AKS engine client VM can be deployed as either Linux (Ubuntu 16.04 LTS) or Windows (Server 2019 with containers).
+The AKS engine client VM can be deployed as either Linux (Ubuntu 18.04 LTS) or Windows (Server 2019 with containers).
 
 The client VM comes with **Kubectl** and **Helm** configured out of the box ready for you to interact with the Kubernetes cluster.
 
