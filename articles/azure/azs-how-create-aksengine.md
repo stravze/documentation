@@ -124,7 +124,7 @@ The script performs the following high-level steps:
 
 3. Deploy the AKS engine client VM (either Linux or Windows) using the `New-AksEngineClient` function from [AksEngine.psm1](linkhere).
 
-4. If the switch `-EnableMonitoring` is supplied, connect to public Azure, obtain details about the Log Analytics workspace and enable the **ContainerInsights** solution using an ARM template.
+4. If the switch `-EnableMonitoring` is provided, connect to public Azure, obtain details about the Log Analytics workspace and enable the **ContainerInsights** solution using an ARM template.
 
     > [!NOTE]
     > If the Log Analytics workspace cannot be found, the script will attempt to create one for you.
