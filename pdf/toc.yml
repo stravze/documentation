@@ -1,0 +1,52 @@
+﻿- name: Azure
+  href: ../articles/azure/toc.yml
+  topicHref: ../articles/azure/azs-home.md
+# - name: OpenShift
+#   href: ../articles/openshift/toc.yml
+#   topicHref: ../articles/openshift/oshift-home.md
+# - name: OpenStack
+#   href: ../articles/openstack/toc.yml
+#   topicHref: ../articles/openstack/ostack-home.md
+# - name: Oracle
+#   href: ../articles/oracle/toc.yml
+#   topicHref: ../articles/oracle/orcl-home.md
+# - name: VMware
+#   href: ../articles/vmware/toc.yml
+#   topicHref: ../articles/vmware/vmw-home.md
+# - name: More
+#   nav_dropdown: true
+#   items:
+#   - name: Cloud Enablement
+#     topicHref: ../articles/enablement/enbl-ref-services.md
+#   - name: Cloud GPU
+#     topicHref: ../articles/gpu/gpu-faq.md
+#   - name: Cloud Storage
+#     topicHref: ../articles/cloud-storage/cs-gs.md
+#   - name: Connectivity 
+#     topicHref: ../articles/connectivity/conn-faq.md
+#   - name: Cross Domain Security Zone
+#     topicHref: ../articles/cdsz/cdsz-gs-walled-garden.md
+#   - name: Dedicated Compute
+#     topicHref: ../articles/dedicated-compute/dc-sd.md
+#   - name: Disaster Recovery as a Service
+#     topicHref: ../articles/draas/draas-gs.md
+#   - name: Email and Collaboration 
+#     topicHref: ../articles/email/email-gs.md
+#   - name: High Performance Compute
+#     topicHref: ../articles/hpc/hpc-ref-overview.md
+#   - name: Managed Services
+#     topicHref: ../articles/managed-services/man-services-home.md
+#   - name: Migration to the Cloud 
+#     topicHref: ../articles/migration/migr-how-zerto-migrate-to-ukcloud.md
+#   - name: Private Cloud
+#     topicHref: ../articles/private-cloud/prc-sd.md
+#   - name: Secure Remote Access
+#     topicHref: ../articles/sra/sra-gs.md
+#   - name: Third-Party Software
+#     topicHref: ../articles/third-party/third-ref-eula.md
+#   - name: Transition Services
+#     topicHref: ../articles/transition-services/trans-sd.md
+#   - name: UKCloud Portal
+#     topicHref: ../articles/portal/ptl-gs.md
+#   - name: Other
+#     topicHref: ../articles/other/other-ref-services-by-region.md

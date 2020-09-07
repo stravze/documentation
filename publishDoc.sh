@@ -14,7 +14,7 @@ echo "Create new TOC"
 powershell ./CreateTOC.ps1
 
 echo "Rebuild the page"
-docfx docfx.json
+docfx build
 
 SOURCE_DIR=$PWD
 TEMP_REPO_DIR=$PWD/../my-project-gh-pages

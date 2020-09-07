@@ -44,5 +44,55 @@
     "sitemap":{
       "baseUrl": "https://docs.ukcloud.com/"
     }
+  },
+  "pdf": {
+    "content": [
+      {
+        "files": [
+		      "articles/**.md",
+          "articles/**/toc.yml",
+          "toc.yml",
+          "*.md",
+          "pdf/*"
+        ],
+        "exclude": [
+          "**/bin/**",
+          "**/obj/**",
+          "_site_pdf/**",
+          "**/toc.yml",
+          "**/toc.md",
+		      "pdf/toc.json"
+        ]
+      },
+      {
+        "files": "pdf/toc.yml"
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "**/images/*.svg",
+          "**/images/*.png",
+          "**/images/*.jpg",
+          "**/images/*.jpeg",
+          "**/images/*.gif"
+        ],
+        "exclude": [
+          "**/bin/**",
+          "**/obj/**",
+          "_site_pdf/**"
+        ]
+      }
+    ],
+    "wkhtmltopdf": {
+      "additionalArguments": "--enable-local-file-access"
+    },
+    "globalMetadata": {
+      "_appTitle": "",
+      "_appFaviconPath": "favicon.ico",
+      "_appLogoPath": "logo.png",
+      "_appFooter": "<span>&copy <a href=https://ukcloud.com>UKCloud Ltd</a>, 2020. All Rights Reserved.<br><a href=https://ukcloud.com/legal>Privacy Policy. </a><a href=https://ukcloud.com/terms-and-conditions>Terms of Use. </a><a href=https://docs.ukcloud.com/articles/other/other-how-contribute-knowledge.html>Contribute. </a></span>"
+    },
+    "dest": "_site_pdf"
   }
 }
