@@ -298,7 +298,7 @@ UKCloud does not currently provide instance performance reports, but you can mon
 
 ### Does UKCloud patch instances?
 
-No, you are responsible for the patching of your services. We make a patch repository available to you for instances on the Elevated OFFICIAL cloud platform (which cannot connect to the internet) for common operating systems that we provide.
+No, you are responsible for the patching of your services. 
 
 <!--### How do I find the latest patches to the UKCloud infrastructure?
 
