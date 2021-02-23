@@ -19,6 +19,16 @@ toc_mdlink: ptl-ref-release-notes.md
 
 This article provides a list of completed Portal releases.
 
+## Release 2.11.4
+
+Date: 24th February 2021
+
+Feature update
+
+Details:
+ 
+- Allow customers to create compute services in Zone 2E
+
 ## Release 2.11.3
 
 Date: 19th February 2021
