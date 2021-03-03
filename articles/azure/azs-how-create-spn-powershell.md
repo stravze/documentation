@@ -217,7 +217,7 @@ Connect-AzureRmAccount -EnvironmentName "AzureStackUser" -Credential $AzureStack
 $AzureStackApp = Get-AzureRmADApplication -DisplayName $AppGet.DisplayName
 
 # Find Object Id of your Service Principal Name in Azure Stack Hub
-$SPNAzureStackGet = Get-AzureRmADServicePrincipal -SearchString $AzureStackApp.DisplayName
+$SPNAzureStackGet = Get-AzureRmADServicePrincipal -DisplayName $AzureStackApp.DisplayName
 $SPNAzureStackGet
 
 # Assign the Service Principal Name a role i.e. Owner, Contributor, Reader, etc. - In Azure Stack Hub
